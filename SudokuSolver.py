@@ -1,3 +1,5 @@
+import time
+
 # Fill the chart below according to your onw sudoku.
 # Write "0" to replace empty spaces! 
 sudoku = [[8,0,0,2,0,0,0,0,0],
@@ -33,11 +35,14 @@ def is_valid(row, col, guess):
 
 def print_table():
     for x in range(9):
-        print("-----------------------------------")
+        if x % 3 == 0:
+            print("-------------------------")
         for y in range(9):
-            print(str(sudoku[x][y]), end=" | ")
-        print()
-    print("-----------------------------------")
+            if y % 3 == 0:
+                print("| ", end="")
+            print(str(sudoku[x][y]), end=" ")
+        print("|")
+    print("-------------------------")
 
     
 def find_empty():
@@ -60,3 +65,17 @@ def solve_sudoku():
                 return True
             sudoku[row][col] = 0    
     return False # SUDOKU IS NOT SOLVABLE!
+
+print_table()
+start_time = time.time()
+if solve_sudoku():
+    end_time = time.time()
+    print()
+    print("Time Required to Solve the Sudoku (in seconds): " + str(end_time - start_time))
+    print()
+    print("   ----The Solution----")    
+    print_table()
+else:
+    print("Sudoku is not solvable!")
+
+        
