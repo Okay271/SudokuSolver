@@ -46,3 +46,17 @@ def find_empty():
             if sudoku[x][y] == 0:
                 return (x, y)
     return None
+
+def solve_sudoku():
+    if find_empty() == None: # THERE ARE NO EMPTY SPACES LEFT
+        return True
+    
+    row, col = find_empty()
+    
+    for i in range (1, 10):
+        if is_valid(row, col, i):
+            sudoku[row][col] = i
+            if solve_sudoku():
+                return True
+            sudoku[row][col] = 0    
+    return False # SUDOKU IS NOT SOLVABLE!
