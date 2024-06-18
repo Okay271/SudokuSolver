@@ -30,3 +30,19 @@ def is_valid(row, col, guess):
                 return False
     
     return True
+
+def print_table():
+    for x in range(9):
+        print("-----------------------------------")
+        for y in range(9):
+            print(str(sudoku[x][y]), end=" | ")
+        print()
+    print("-----------------------------------")
+
+    
+def find_empty():
+    for x in range(9):
+        for y in range(9):
+            if sudoku[x][y] == 0:
+                return (x, y)
+    return None
